@@ -1,4 +1,5 @@
 🎪 La Théorie des Jeux au Campement 🎻
+
 ![image](https://github.com/user-attachments/assets/70b4d347-1059-499d-af2f-8bcb7cd847df)
 
 🔮 Présentation
@@ -24,10 +25,10 @@ Pour installer cette application sur votre propre campement numérique:
 bash# Cloner le repositoire (sans le gendarme)
 git clone https://github.com/manouche-dev/theorie-des-jeux.git
 
-# Se déplacer vers le campement
+Se déplacer vers le campement
 cd theorie-des-jeux
 
-# Allumer le feu (serveur local)
+Allumer le feu (serveur local)
 python -m http.server
 Puis ouvrez votre navigateur à l'adresse http://localhost:8000
 🎭 Comment jouer
