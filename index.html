@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Théorie des Jeux au Campement</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Crimson+Pro:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Crimson Pro', serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f5e9d9;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b17a4e' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        h1 {
+            font-family: 'Berkshire Swash', cursive;
+            color: #8b4513;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            background-color: #fbeee0;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid #d4a76a;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+        }
+        h2 {
+            font-family: 'Berkshire Swash', cursive;
+            color: #8b4513;
+            margin-top: 30px;
+            font-size: 1.8rem;
+            border-bottom: 2px dashed #d4a76a;
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 600;
+            color: #8b4513;
+            font-size: 1.3rem;
+            margin-top: 20px;
+        }
+        .concept {
+            background-color: #fefaf6;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #d4a76a;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b17a4e' fill-opacity='0.15'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .concept:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+        }
+        .exemple {
+            background-color: #f3e9dc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #d4a76a;
+            font-style: italic;
+        }
+        .interaction {
+            background-color: #fdf7ed;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: inset 0 0 8px rgba(139, 69, 19, 0.1);
+            border: 1px solid #d4a76a;
+        }
+        button {
+            background-color: #d4a76a;
+            color: #4e2a0f;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Crimson Pro', serif;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(139, 69, 19, 0.3);
+        }
+        button:hover {
+            background-color: #b17a4e;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(139, 69, 19, 0.4);
+        }
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 3px rgba(139, 69, 19, 0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.2);
+            background-color: #fdf7ed;
+        }
+        th, td {
+            border: 1px solid #d4a76a;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #e6d0b5;
+            color: #4e2a0f;
+            font-weight: 600;
+            font-family: 'Crimson Pro', serif;
+        }
+        tr:nth-child(even) {
+            background-color: #faf3e8;
+        }
+        tr:hover {
+            background-color: #f3e9dc;
+        }
+        .choice {
+            margin-bottom: 15px;
+        }
+        .result {
+            font-weight: 500;
+            margin-top: 20px;
+            min-height: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f3e9dc;
+            border: 1px dashed #b17a4e;
+            transition: all 0.3s ease;
+        }
+        .hidden {
+            display: none;
+        }
+        .highlight {
+            background-color: #ffe5b4;
+            color: #8b4513;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .icon {
+            display: inline-block;
+            margin-right: 5px;
+            font-size: 1.2em;
+        }
+        @media (max-width: 768px) {
+            .concept {
+                padding: 20px;
+            }
+            button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>La Théorie des Jeux au Campement</h1>
+    <p>Découvrons les concepts fondamentaux de la théorie des jeux à travers la vie quotidienne au campement, avec tout le folklore qui va avec!</p>
+
+    <div class="concept">
+        <h2>1. Le Dilemme des Poules Volées</h2>
+        <p>Ce concept illustre comment la poursuite d'intérêts individuels peut conduire à un résultat collectivement sous-optimal.</p>
+        
+        <div class="exemple">
+            <p>Deux gitans, Rouletabille et Moustache, sont arrêtés par le gendarme après un vol de poules. Interrogés séparément, chacun a deux choix : <span class="highlight">tenir sa langue</span> (ne pas dénoncer l'autre) ou <span class="highlight">balancer</span> (dénoncer l'autre).</p>
+            
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Moustache tient sa langue</th>
+                    <th>Moustache balance</th>
+                </tr>
+                <tr>
+                    <th>Rouletabille tient sa langue</th>
+                    <td>R: 1 mois<br>M: 1 mois<br>(au gnouf)</td>
+                    <td>R: 3 mois<br>M: liberté<br>(+ 3 poules)</td>
+                </tr>
+                <tr>
+                    <th>Rouletabille balance</th>
+                    <td>R: liberté<br>(+ 3 poules)<br>M: 3 mois</td>
+                    <td>R: 2 mois<br>M: 2 mois<br>(sans poules)</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes Rouletabille. Que décidez-vous ?</p>
+            <div class="choice">
+                <button id="cooperer">Tenir ma langue</button>
+                <button id="trahir">Balancer Moustache</button>
+            </div>
+            <div class="result" id="prisonnier-resultat"></div>
+            <div class="hidden" id="prisonnier-explication">
+                <p>En théorie des jeux, ce dilemme montre que bien que la solidarité soit meilleure pour les deux gitans ensemble, la stratégie dominante pour chaque individu est de balancer l'autre, conduisant à un équilibre sous-optimal où tout le monde perd.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>2. L'Équilibre du Carrefour des Caravanes</h2>
+        <p>Un équilibre est une situation où aucun joueur n'a intérêt à changer unilatéralement sa stratégie.</p>
+        
+        <div class="exemple">
+            <p>Deux caravanes tirées par des chevaux arrivent au même carrefour. Chaque conducteur a deux choix : <span class="highlight">foncer</span> ou <span class="highlight">laisser passer</span>.</p>
+            
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Django fonce</th>
+                    <th>Django laisse passer</th>
+                </tr>
+                <tr>
+                    <th>Yanko fonce</th>
+                    <td>Y: Caravane cassée<br>D: Caravane cassée<br>(+ bagarre)</td>
+                    <td>Y: Passe en premier<br>D: Attend</td>
+                </tr>
+                <tr>
+                    <th>Yanko laisse passer</th>
+                    <td>Y: Attend<br>D: Passe en premier</td>
+                    <td>Y: Attente inutile<br>D: Attente inutile</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes Yanko avec votre belle caravane décorée. Que faites-vous au carrefour ?</p>
+            <div class="choice">
+                <button id="passer">Foncer</button>
+                <button id="attendre">Laisser passer</button>
+            </div>
+            <div class="result" id="nash-resultat"></div>
+            <div class="hidden" id="nash-explication">
+                <p>Dans cette situation, il existe deux équilibres : (Bamboula fonce, Django laisse passer) et (Bamboula laisse passer, Django fonce). Chaque gitan préfère passer pendant que l'autre attend, mais il vaut mieux attendre que risquer une bagarre et deux caravanes défoncées.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>3. Le Jeu à Somme Nulle de l'Accordéon</h2>
+        <p>Dans un jeu à somme nulle, ce que l'un gagne, l'autre le perd exactement.</p>
+        
+        <div class="exemple">
+            <p>Le duel d'accordéon lors de la fête du campement est un exemple classique de jeu à somme nulle. Si Djorka impressionne plus le public, c'est autant de prestige que Patchaï perd.</p>
+            <p>Le gagnant remporte une dent en or, le perdant doit donner la sienne.</p>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes Djorka, choisissez votre style de jeu d'accordéon :</p>
+            <div class="choice">
+                <button id="pierre">Rythme manouche (Pierre)</button>
+                <button id="papier">Valse musette (Papier)</button>
+                <button id="ciseaux">Czardas endiablée (Ciseaux)</button>
+            </div>
+            <div class="result" id="somme-nulle-resultat"></div>
+            <div class="hidden" id="somme-nulle-explication">
+                <p>Ce duel illustre parfaitement le concept de jeu à somme nulle : si vous gagnez une dent en or, l'adversaire perd la sienne. La meilleure stratégie est généralement d'utiliser une stratégie mixte aléatoire entre les différents styles.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>4. Le Marchandage de la Vieille Voiture</h2>
+        <p>Dans les jeux séquentiels, les joueurs jouent l'un après l'autre, contrairement aux jeux simultanés.</p>
+        
+        <div class="exemple">
+            <p>Imaginez un marchandage : La Guêpe propose un prix pour une vieille Mercédès 190D, et Marius peut accepter ou refuser. Si l'offre est refusée, La Guêpe repart avec sa voiture et Marius garde ses billets.</p>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes La Guêpe. Pour combien proposez-vous votre vieille Mercédès qui vaut environ 1000€ ?</p>
+            <div class="choice">
+                <button id="offre1">1000€ (prix honnête)</button>
+                <button id="offre2">1500€ (prix gonflé)</button>
+                <button id="offre3">2000€ (prix de fou)</button>
+            </div>
+            <div class="result" id="sequentiel-resultat"></div>
+            <div class="hidden" id="sequentiel-explication">
+                <p>Ce jeu montre l'importance de l'ordre des décisions et de la prévision du comportement de l'autre. La théorie suggère que toute offre sous la valeur réelle devrait être acceptée, mais en pratique, les gens refusent souvent des offres jugées trop inéquitables - sans parler des histoires de compteur kilométrique trafiqué !</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>5. La Chasse au Hérisson ou à la Poule</h2>
+        <p>Une stratégie dominante est celle qui offre un meilleur résultat quelles que soient les décisions des autres joueurs.</p>
+        
+        <div class="exemple">
+            <p>Considérons le choix du repas. Carlos et Esmeralda peuvent choisir de chasser un hérisson ensemble (coopération nécessaire pour cette délicatesse) ou une poule individuellement (plus facile mais moins prestigieux).</p>
+            
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Esmeralda chasse le hérisson</th>
+                    <th>Esmeralda chasse la poule</th>
+                </tr>
+                <tr>
+                    <th>Carlos chasse le hérisson</th>
+                    <td>C: Festin royal<br>E: Festin royal</td>
+                    <td>C: Rien à manger<br>E: Poulet rôti</td>
+                </tr>
+                <tr>
+                    <th>Carlos chasse la poule</th>
+                    <td>C: Poulet rôti<br>E: Rien à manger</td>
+                    <td>C: Poulet simple<br>E: Poulet simple</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes Carlos. Que choisissez-vous de chasser pour le dîner ?</p>
+            <div class="choice">
+                <button id="cerf">Hérisson (délicat mais difficile)</button>
+                <button id="lievre">Poule (facile mais ordinaire)</button>
+            </div>
+            <div class="result" id="dominant-resultat"></div>
+            <div class="hidden" id="dominant-explication">
+                <p>Dans ce jeu, la chasse à la poule est une stratégie dominante car elle garantit un repas minimal indépendamment du choix de l'autre. Cependant, la coopération (chasse au hérisson) offre un festin optimal pour les deux gitans, avec tous les honneurs du campement.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>6. Les Combines Répétées</h2>
+        <p>Les jeux répétés sont des situations où les mêmes joueurs interagissent plusieurs fois, ce qui permet l'émergence de stratégies basées sur la réputation et la confiance.</p>
+        
+        <div class="exemple">
+            <p>Imaginez deux gitans, Kalo et Papillon, qui se retrouvent régulièrement pour échanger des marchandises "tombées du camion". Chacun peut être loyal ou tricheur.</p>
+            <p>La stratégie "œil pour œil" consiste à être loyal au premier échange, puis à reproduire le comportement précédent de l'autre.</p>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes Kalo. Que choisissez-vous lors du premier échange avec Papillon ?</p>
+            <div class="choice">
+                <button id="rep-cooperer">Être loyal (marchandise correcte)</button>
+                <button id="rep-trahir">Tricher (fausse marchandise)</button>
+            </div>
+            <div class="result" id="repete-resultat"></div>
+            <div id="repete-tour2" class="hidden">
+                <p>Second échange - Que choisissez-vous maintenant ?</p>
+                <div class="choice">
+                    <button id="rep-cooperer2">Être loyal</button>
+                    <button id="rep-trahir2">Tricher</button>
+                </div>
+            </div>
+            <div class="result" id="repete-resultat2"></div>
+            <div class="hidden" id="repete-explication">
+                <p>Dans les combines répétées, la loyauté peut devenir rationnelle car les actions présentes influencent les comportements futurs. La réputation est capitale dans le campement, et la stratégie "œil pour œil" s'est révélée particulièrement efficace pour maintenir la confiance.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>7. L'Arnaque à la Voiture d'Occasion</h2>
+        <p>Une situation d'information asymétrique se produit lorsqu'un joueur possède plus d'informations qu'un autre lors d'une prise de décision.</p>
+        
+        <div class="exemple">
+            <p>Prenons l'exemple d'une vente de Renault 25 d'occasion : le vendeur, Tino aux Dents d'Or, connaît la qualité réelle du véhicule (bonne ou catastrophique), mais l'acheteur ne peut pas la vérifier avant l'achat.</p>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes un acheteur potentiel. Tino aux Dents d'Or vous propose une Renault 25 à 1500€, jurant qu'elle "a appartenu à sa grand-mère qui ne s'en servait que pour aller à la messe".</p>
+            <div class="choice">
+                <button id="acheter">Acheter la Renault</button>
+                <button id="refuser">Refuser l'offre</button>
+            </div>
+            <div class="result" id="asymetrique-resultat"></div>
+            <div class="hidden" id="asymetrique-explication">
+                <p>L'information asymétrique peut conduire au "marché des citrons" : les vendeurs de voitures pourries sont plus enclins à vendre, tandis que les vendeurs de bonnes voitures se retirent du marché face à la méfiance des acheteurs. Au campement, cette méfiance est souvent justifiée quand on voit les épaves sur cales à l'entrée!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>8. Le Partage du Butin Après la Foire</h2>
+        <p>Les jeux coopératifs étudient comment les joueurs peuvent former des coalitions pour obtenir des résultats collectifs plus avantageux, puis partager équitablement les gains.</p>
+        
+        <div class="exemple">
+            <p>Trois familles (Reinhardt, Rosenberg et Romanoff) peuvent générer différents profits lors de la foire annuelle, selon les coalitions formées :</p>
+            <ul>
+                <li>Reinhardt seule : 100€ (en jouant de la guitare)</li>
+                <li>Rosenberg seule : 80€ (en lisant les lignes de la main)</li>
+                <li>Romanoff seule : 60€ (en vendant des paniers)</li>
+                <li>Reinhardt+Rosenberg ensemble : 220€ (spectacle musical avec prédictions)</li>
+                <li>Reinhardt+Romanoff ensemble : 180€ (musique et vente)</li>
+                <li>Rosenberg+Romanoff ensemble : 160€ (paniers bénis qui portent bonheur)</li>
+                <li>Les trois familles ensemble : 300€ (grand spectacle folklorique complet)</li>
+            </ul>
+            <p>Comment répartir équitablement le profit total de 300€ entre les trois familles ?</p>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Quelle famille pensez-vous devrait recevoir la plus grande part du butin ?</p>
+            <div class="choice">
+                <button id="entrepriseA">Famille Reinhardt</button>
+                <button id="entrepriseB">Famille Rosenberg</button>
+                <button id="entrepriseC">Famille Romanoff</button>
+            </div>
+            <div class="result" id="cooperatif-resultat"></div>
+            <div class="hidden" id="cooperatif-explication">
+                <p>D'après la valeur de Shapley, la répartition équitable serait : Reinhardt = 120€, Rosenberg = 100€, Romanoff = 80€. Cette solution tient compte de la contribution marginale moyenne de chaque famille, basée sur leur talent et leur réputation auprès des gadjos.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>9. Le Paradoxe du Raccourci au Campement</h2>
+        <p>Le prix de l'anarchie mesure la perte d'efficacité dans un système lorsque les acteurs poursuivent leurs intérêts individuels plutôt que de coordonner leurs actions.</p>
+        
+        <div class="exemple">
+            <p>Un exemple classique est le <span class="highlight">paradoxe du raccourci</span> : parfois, ajouter un chemin plus court à un campement peut augmenter les bouchons pour tous les habitants.</p>
+            <p>Considérons un campement où 50 caravanes se déplacent du terrain principal à la source d'eau. Deux chemins existent : par le bois ou par la colline.</p>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Vous êtes le patriarche du campement. Un nouveau raccourci traversant la zone de stockage des palettes est proposé.</p>
+            <div class="choice">
+                <button id="ajouter-route">Créer le raccourci</button>
+                <button id="conserver-reseau">Garder les chemins actuels</button>
+            </div>
+            <div class="result" id="anarchie-resultat"></div>
+            <div class="hidden" id="anarchie-explication">
+                <p>Le paradoxe du raccourci montre que l'ajout d'un chemin peut paradoxalement augmenter les embouteillages pour tous. Cela se produit car chaque habitant cherche son chemin optimal individuellement, ce qui crée un bouchon monstre devant la source. La coordination collective est souvent préférable, même si le patriarche doit parfois imposer des règles strictes.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept">
+        <h2>10. Les Enchères du Marché aux Puces</h2>
+        <p>La théorie des jeux étudie les différents types d'enchères et leurs propriétés, notamment comment concevoir des mécanismes qui incitent les participants à révéler leur vraie valeur.</p>
+        
+        <div class="exemple">
+            <p>Dans une <span class="highlight">enchère au second prix</span> au marché aux puces, le gagnant est celui qui propose le plus d'argent, mais il ne paie que le montant de la deuxième offre la plus élevée.</p>
+            <p>Par exemple, pour un véritable tapis persan (ou presque), si vous proposez 300€ et quelqu'un d'autre 200€, vous remportez le tapis mais ne payez que 200€.</p>
+        </div>
+        
+        <div class="interaction">
+            <h3>À vous de jouer !</h3>
+            <p>Une magnifique chaîne hi-fi est mise aux enchères au marché. Pour vous, elle vaut 200€. Quelle stratégie adoptez-vous ?</p>
+            <div class="choice">
+                <button id="enchere-vrai">Proposer sa vraie valeur (200€)</button>
+                <button id="enchere-plus">Surenchérir (300€)</button>
+                <button id="enchere-moins">Sous-enchérir (150€)</button>
+            </div>
+            <div class="result" id="enchere-resultat"></div>
+            <div class="hidden" id="enchere-explication">
+                <p>Dans une enchère au second prix, la stratégie dominante est de révéler sa vraie valeur. Surenchérir risque de vous faire payer plus que votre valeur si la seconde offre est entre 200€ et 300€. Sous-enchérir risque de vous faire perdre l'enchère alors que vous auriez pu gagner avec un profit. Au marché aux puces, cette stratégie optimale est rarement suivie - d'où les talents légendaires de négociateurs!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dilemme du prisonnier
+        document.getElementById('cooperer').addEventListener('click', function() {
+            const decision = Math.random() > 0.5 ? 'coopérer' : 'trahir';
+            let resultat = `L'autre prisonnier a décidé de ${decision}.<br>`;
+            
+            if (decision === 'coopérer') {
+                resultat += "Vous écoperez tous les deux d'une peine d'un an.";
+            } else {
+                resultat += "Vous écoperez d'une peine de 3 ans alors que l'autre prisonnier est libéré.";
+            }
+            
+            document.getElementById('prisonnier-resultat').innerHTML = resultat;
+            document.getElementById('prisonnier-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('trahir').addEventListener('click', function() {
+            const decision = Math.random() > 0.5 ? 'coopérer' : 'trahir';
+            let resultat = `L'autre prisonnier a décidé de ${decision}.<br>`;
+            
+            if (decision === 'coopérer') {
+                resultat += "Vous êtes libéré alors que l'autre prisonnier écope d'une peine de 3 ans.";
+            } else {
+                resultat += "Vous écoperez tous les deux d'une peine de 2 ans.";
+            }
+            
+            document.getElementById('prisonnier-resultat').innerHTML = resultat;
+            document.getElementById('prisonnier-explication').classList.remove('hidden');
+        });
+        
+        // Équilibre de Nash
+        document.getElementById('passer').addEventListener('click', function() {
+            const decision = Math.random() > 0.5 ? 'foncé' : 'laissé passer';
+            let resultat = `Django a ${decision}.<br>`;
+            
+            if (decision === 'foncé') {
+                resultat += "Carambouille! Vos caravanes sont défoncées et une bagarre mémorable s'ensuit. Même les gendarmes en parlent encore.";
+            } else {
+                resultat += "Vous passez fièrement le premier, Django attend. Vous gagnez du respect au campement.";
+            }
+            
+            document.getElementById('nash-resultat').innerHTML = resultat;
+            document.getElementById('nash-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('attendre').addEventListener('click', function() {
+            const decision = Math.random() > 0.5 ? 'foncé' : 'laissé passer';
+            let resultat = `Django a ${decision}.<br>`;
+            
+            if (decision === 'foncé') {
+                resultat += "Django passe le premier, vous attendez sagement. Il vous fait un petit signe de la main en passant.";
+            } else {
+                resultat += "Vous attendez tous les deux comme deux andouilles. Les enfants se moquent de vous depuis leurs caravanes.";
+            }
+            
+            document.getElementById('nash-resultat').innerHTML = resultat;
+            document.getElementById('nash-explication').classList.remove('hidden');
+        });
+        
+        // Jeux à somme nulle
+        document.getElementById('pierre').addEventListener('click', function() {
+            const choix = ['pierre', 'papier', 'ciseaux'];
+            const ordinateur = choix[Math.floor(Math.random() * 3)];
+            
+            let resultat = `Vous : Pierre | Ordinateur : ${ordinateur.charAt(0).toUpperCase() + ordinateur.slice(1)}<br>`;
+            
+            if (ordinateur === 'pierre') {
+                resultat += "Égalité ! (0 point partout)";
+            } else if (ordinateur === 'papier') {
+                resultat += "Vous perdez ! (-1 pour vous, +1 pour l'ordinateur)";
+            } else {
+                resultat += "Vous gagnez ! (+1 pour vous, -1 pour l'ordinateur)";
+            }
+            
+            document.getElementById('somme-nulle-resultat').innerHTML = resultat;
+            document.getElementById('somme-nulle-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('papier').addEventListener('click', function() {
+            const choix = ['pierre', 'papier', 'ciseaux'];
+            const ordinateur = choix[Math.floor(Math.random() * 3)];
+            
+            let resultat = `Vous : Papier | Ordinateur : ${ordinateur.charAt(0).toUpperCase() + ordinateur.slice(1)}<br>`;
+            
+            if (ordinateur === 'pierre') {
+                resultat += "Vous gagnez ! (+1 pour vous, -1 pour l'ordinateur)";
+            } else if (ordinateur === 'papier') {
+                resultat += "Égalité ! (0 point partout)";
+            } else {
+                resultat += "Vous perdez ! (-1 pour vous, +1 pour l'ordinateur)";
+            }
+            
+            document.getElementById('somme-nulle-resultat').innerHTML = resultat;
+            document.getElementById('somme-nulle-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('ciseaux').addEventListener('click', function() {
+            const choix = ['pierre', 'papier', 'ciseaux'];
+            const ordinateur = choix[Math.floor(Math.random() * 3)];
+            
+            let resultat = `Vous : Ciseaux | Ordinateur : ${ordinateur.charAt(0).toUpperCase() + ordinateur.slice(1)}<br>`;
+            
+            if (ordinateur === 'pierre') {
+                resultat += "Vous perdez ! (-1 pour vous, +1 pour l'ordinateur)";
+            } else if (ordinateur === 'papier') {
+                resultat += "Vous gagnez ! (+1 pour vous, -1 pour l'ordinateur)";
+            } else {
+                resultat += "Égalité ! (0 point partout)";
+            }
+            
+            document.getElementById('somme-nulle-resultat').innerHTML = resultat;
+            document.getElementById('somme-nulle-explication').classList.remove('hidden');
+        });
+        
+        // Jeux séquentiels
+        document.getElementById('offre1').addEventListener('click', function() {
+            const accepte = Math.random() > 0.1; // 90% de chance d'accepter
+            
+            let resultat = `Vous proposez la Mercédès pour 1000€ (un prix honnête).<br>`;
+            
+            if (accepte) {
+                resultat += "Marius accepte le deal! Vous avez fait une vente honnête, mais les autres gitans du campement vous regardent bizarrement.";
+            } else {
+                resultat += "Marius refuse en vous insultant! Il croit que la voiture est forcément 'maquillée' si vous proposez un prix honnête.";
+            }
+            
+            document.getElementById('sequentiel-resultat').innerHTML = resultat;
+            document.getElementById('sequentiel-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('offre2').addEventListener('click', function() {
+            const accepte = Math.random() > 0.4; // 60% de chance d'accepter
+            
+            let resultat = `Vous proposez la Mercédès pour 1500€ (un peu gonflé).<br>`;
+            
+            if (accepte) {
+                resultat += "Marius accepte après une négociation théâtrale! Vous avez fait un bénéfice de 500€ et tout le monde est content.";
+            } else {
+                resultat += "Marius refuse en crachant par terre! Peut-être auriez-vous dû commencer encore plus haut?";
+            }
+            
+            document.getElementById('sequentiel-resultat').innerHTML = resultat;
+            document.getElementById('sequentiel-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('offre3').addEventListener('click', function() {
+            const accepte = Math.random() > 0.8; // 20% de chance d'accepter
+            
+            let resultat = `Vous proposez la Mercédès pour 2000€ (un prix de fou).<br>`;
+            
+            if (accepte) {
+                resultat += "Incroyable! Marius accepte! Vous avez doublé votre argent et votre réputation de négociateur est faite!";
+            } else {
+                resultat += "Marius vous rit au nez et s'en va! Même au campement, il y a des limites à l'arnaque.";
+            }
+            
+            document.getElementById('sequentiel-resultat').innerHTML = resultat;
+            document.getElementById('sequentiel-explication').classList.remove('hidden');
+        });
+        
+        // Stratégie dominante
+        document.getElementById('cerf').addEventListener('click', function() {
+            // L'ordinateur choisit souvent la poule car c'est plus sûr
+            const decision = Math.random() > 0.7 ? 'hérisson' : 'poule';
+            let resultat = `Esmeralda a décidé de chasser ${decision === 'hérisson' ? 'un hérisson' : 'une poule'}.<br>`;
+            
+            if (decision === 'hérisson') {
+                resultat += "Succès! Vous avez capturé un magnifique hérisson! Le festin royal fait la renommée de votre campement, et Esmeralda vous regarde avec admiration.";
+            } else {
+                resultat += "Catastrophe! Vous n'avez rien attrapé tandis qu'Esmeralda déguste sa poule. Vous allez vous coucher le ventre vide, mais avec votre fierté.";
+            }
+            
+            document.getElementById('dominant-resultat').innerHTML = resultat;
+            document.getElementById('dominant-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('lievre').addEventListener('click', function() {
+            const decision = Math.random() > 0.7 ? 'hérisson' : 'poule';
+            let resultat = `Esmeralda a décidé de chasser ${decision === 'hérisson' ? 'un hérisson' : 'une poule'}.<br>`;
+            
+            if (decision === 'hérisson') {
+                resultat += "Vous dégustez votre poulet tandis qu'Esmeralda rentre bredouille. Elle vous lance un regard noir - la prochaine fois, pensez à partager!";
+            } else {
+                resultat += "Vous avez chacun attrapé une poule. Repas correct mais sans gloire. Les enfants auraient préféré du hérisson.";
+            }
+            
+            document.getElementById('dominant-resultat').innerHTML = resultat;
+            document.getElementById('dominant-explication').classList.remove('hidden');
+        });
+        
+        // Jeux répétés
+        let strategie = 'cooperer'; // stratégie initiale de l'adversaire
+        
+        document.getElementById('rep-cooperer').addEventListener('click', function() {
+            let resultat = "Tour 1 - Vous avez coopéré. L'adversaire a aussi coopéré.<br>";
+            resultat += "Vous gagnez 2 points chacun.";
+            document.getElementById('repete-resultat').innerHTML = resultat;
+            document.getElementById('repete-tour2').classList.remove('hidden');
+            strategie = 'cooperer'; // l'adversaire reproduit votre choix
+        });
+        
+        document.getElementById('rep-trahir').addEventListener('click', function() {
+            let resultat = "Tour 1 - Vous avez trahi. L'adversaire a coopéré.<br>";
+            resultat += "Vous gagnez 3 points, l'adversaire ne gagne rien.";
+            document.getElementById('repete-resultat').innerHTML = resultat;
+            document.getElementById('repete-tour2').classList.remove('hidden');
+            strategie = 'trahir'; // l'adversaire reproduit votre choix
+        });
+        
+        document.getElementById('rep-cooperer2').addEventListener('click', function() {
+            let resultat = "Tour 2 - Vous avez coopéré. ";
+            
+            if(strategie === 'cooperer') {
+                resultat += "L'adversaire a aussi coopéré.<br>Vous gagnez 2 points chacun.";
+            } else {
+                resultat += "L'adversaire a trahi (reproduisant votre choix du tour 1).<br>Vous ne gagnez rien, l'adversaire gagne 3 points.";
+            }
+            
+            document.getElementById('repete-resultat2').innerHTML = resultat;
+            document.getElementById('repete-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('rep-trahir2').addEventListener('click', function() {
+            let resultat = "Tour 2 - Vous avez trahi. ";
+            
+            if(strategie === 'cooperer') {
+                resultat += "L'adversaire a coopéré (reproduisant votre choix du tour 1).<br>Vous gagnez 3 points, l'adversaire ne gagne rien.";
+            } else {
+                resultat += "L'adversaire a aussi trahi.<br>Vous gagnez 1 point chacun.";
+            }
+            
+            document.getElementById('repete-resultat2').innerHTML = resultat;
+            document.getElementById('repete-explication').classList.remove('hidden');
+        });
+        
+        // Information asymétrique
+        document.getElementById('acheter').addEventListener('click', function() {
+            const qualite = Math.random() > 0.3 ? 'bonne' : 'mauvaise';
+            let resultat = '';
+            
+            if(qualite === 'bonne') {
+                resultat = "Vous avez acheté une voiture de bonne qualité ! Sa valeur réelle est de 7000€.<br>Vous avez fait une bonne affaire (+2000€).";
+            } else {
+                resultat = "Vous avez acheté une voiture de mauvaise qualité ! Sa valeur réelle est de 2000€.<br>Vous avez fait une mauvaise affaire (-3000€).";
+            }
+            
+            document.getElementById('asymetrique-resultat').innerHTML = resultat;
+            document.getElementById('asymetrique-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('refuser').addEventListener('click', function() {
+            const qualite = Math.random() > 0.3 ? 'bonne' : 'mauvaise';
+            let resultat = '';
+            
+            if(qualite === 'bonne') {
+                resultat = "Vous avez refusé d'acheter une voiture qui était en réalité de bonne qualité.<br>Vous avez manqué une bonne affaire.";
+            } else {
+                resultat = "Vous avez refusé d'acheter une voiture qui était en réalité de mauvaise qualité.<br>Vous avez évité une mauvaise affaire.";
+            }
+            
+            document.getElementById('asymetrique-resultat').innerHTML = resultat;
+            document.getElementById('asymetrique-explication').classList.remove('hidden');
+        });
+        
+        // Jeux coopératifs
+        document.getElementById('entrepriseA').addEventListener('click', function() {
+            let resultat = "Correct! La famille Reinhardt mérite la plus grande part.<br>";
+            resultat += "Selon les anciens, la répartition équitable serait : Reinhardt = 120€, Rosenberg = 100€, Romanoff = 80€. Les guitaristes sont toujours les stars du campement!";
+            
+            document.getElementById('cooperatif-resultat').innerHTML = resultat;
+            document.getElementById('cooperatif-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('entrepriseB').addEventListener('click', function() {
+            let resultat = "Pas tout à fait! La famille Reinhardt mérite la plus grande part.<br>";
+            resultat += "Selon les anciens, la répartition équitable serait : Reinhardt = 120€, Rosenberg = 100€, Romanoff = 80€. Bien que les prédictions soient impressionnantes, c'est la musique qui attire le plus de gadjos.";
+            
+            document.getElementById('cooperatif-resultat').innerHTML = resultat;
+            document.getElementById('cooperatif-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('entrepriseC').addEventListener('click', function() {
+            let resultat = "Non, ce n'est pas exact. La famille Reinhardt mérite la plus grande part.<br>";
+            resultat += "Selon les anciens, la répartition équitable serait : Reinhardt = 120€, Rosenberg = 100€, Romanoff = 80€. Les paniers sont jolis, mais ils n'attirent pas autant d'attention que la musique ou les prédictions.";
+            
+            document.getElementById('cooperatif-resultat').innerHTML = resultat;
+            document.getElementById('cooperatif-explication').classList.remove('hidden');
+        });
+        
+        // Prix de l'anarchie
+        document.getElementById('ajouter-route').addEventListener('click', function() {
+            let resultat = "Avec la nouvelle route B→C, tous les conducteurs ont choisi le chemin A→B→C→D car il semble individuellement optimal.<br>";
+            resultat += "Résultat paradoxal : le temps de trajet moyen a augmenté de 10% pour tous les usagers !";
+            
+            document.getElementById('anarchie-resultat').innerHTML = resultat;
+            document.getElementById('anarchie-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('conserver-reseau').addEventListener('click', function() {
+            let resultat = "Vous avez conservé le réseau actuel. Les conducteurs se répartissent équitablement entre les deux routes existantes.<br>";
+            resultat += "Le temps de trajet reste optimal pour l'ensemble des usagers.";
+            
+            document.getElementById('anarchie-resultat').innerHTML = resultat;
+            document.getElementById('anarchie-explication').classList.remove('hidden');
+        });
+        
+        // Mécanismes d'enchères
+        document.getElementById('enchere-vrai').addEventListener('click', function() {
+            const autreOffre = Math.floor(Math.random() * 300) + 100;
+            let resultat = `Vous avez proposé votre valeur réelle (200€). Un autre gitan a proposé ${autreOffre}€.<br>`;
+            
+            if(autreOffre > 200) {
+                resultat += `Vous n'avez pas remporté la chaîne hi-fi. Le vendeur vous regarde avec déception - il s'attendait à plus de spectacle dans votre négociation.`;
+            } else {
+                resultat += `Vous avez remporté la chaîne hi-fi! Vous ne payez que ${autreOffre}€ pour un objet que vous valorisez à 200€.<br>Votre profit est de ${200-autreOffre}€, et vous n'avez même pas eu besoin de théâtraliser la négociation!`;
+            }
+            
+            document.getElementById('enchere-resultat').innerHTML = resultat;
+            document.getElementById('enchere-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('enchere-plus').addEventListener('click', function() {
+            const autreOffre = Math.floor(Math.random() * 300) + 100;
+            let resultat = `Vous avez surenchéri à 300€ avec de grands gestes et des exclamations. Un autre gitan a proposé ${autreOffre}€.<br>`;
+            
+            if(autreOffre > 300) {
+                resultat += `Malgré votre spectacle, vous n'avez pas remporté la chaîne hi-fi. Votre réputation de négociateur en prend un coup.`;
+            } else if(autreOffre > 200 && autreOffre <= 300) {
+                resultat += `Vous avez remporté la chaîne hi-fi, mais vous payez ${autreOffre}€ pour un objet qui ne vaut que 200€ à vos yeux.<br>Vous perdez ${autreOffre-200}€ mais votre prestige au campement augmente!`;
+            } else {
+                resultat += `Vous avez remporté la chaîne hi-fi! Vous payez ${autreOffre}€ pour un objet que vous valorisez à 200€.<br>Votre profit est de ${200-autreOffre}€, et votre théâtralisation a impressionné l'assemblée!`;
+            }
+            
+            document.getElementById('enchere-resultat').innerHTML = resultat;
+            document.getElementById('enchere-explication').classList.remove('hidden');
+        });
+        
+        document.getElementById('enchere-moins').addEventListener('click', function() {
+            const autreOffre = Math.floor(Math.random() * 300) + 100;
+            let resultat = `Vous avez sous-enchéri à 150€, prétendant que la chaîne est "une camelote pas réparable". Un autre gitan a proposé ${autreOffre}€.<br>`;
+            
+            if(autreOffre > 150) {
+                if(autreOffre <= 200) {
+                    resultat += `Vous n'avez pas remporté l'enchère, alors que vous auriez pu faire un profit en proposant plus.<br>Vous avez manqué un profit potentiel de ${200-autreOffre}€. Votre tactique de dénigrement n'a pas fonctionné.`;
+                } else {
+                    resultat += `Vous n'avez pas remporté l'enchère, mais c'est mieux ainsi car l'autre a surpayé.`;
+                }
+            } else {
+                resultat += `Vous avez remporté la chaîne hi-fi! Vous payez ${autreOffre}€ pour un objet que vous valorisez à 200€.<br>Votre profit est de ${200-autreOffre}€ et votre stratégie de dénigrement a fonctionné à merveille!`;
+            }
+            
+            document.getElementById('enchere-resultat').innerHTML = resultat;
+            document.getElementById('enchere-explication').classList.remove('hidden');
+        });
+    </script>
+        
+</body>
+</html>
