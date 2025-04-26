@@ -3,10 +3,12 @@
 ![image](https://github.com/user-attachments/assets/70b4d347-1059-499d-af2f-8bcb7cd847df)
 
 🔮 Présentation
+
 Bienvenue au grand campement des mathématiques tziganes! Ce projet présente les concepts fondamentaux de la théorie des jeux à travers un univers folklorique et haut en couleur.
 Comme disait le vieux Paprika, patriarche du clan des mathématiciens nomades : "Les gadjos ont inventé la théorie des jeux, mais c'est nous qui la vivons tous les jours!"
 
 🚐 Fonctionnalités
+
 Notre application web interactive permet de comprendre 10 concepts fondamentaux de la théorie des jeux à travers des situations du quotidien manouche :
 
 Le Dilemme des Poules Volées - Tenir sa langue ou balancer Moustache?
@@ -21,6 +23,7 @@ Le Paradoxe du Raccourci - Quand le plus court chemin rallonge le voyage
 Les Enchères du Marché aux Puces - L'art subtil de la surenchère théâtralisée
 
 🔥 Installation
+
 Pour installer cette application sur votre propre campement numérique:
 bash# Cloner le repositoire (sans le gendarme)
 git clone https://github.com/manouche-dev/theorie-des-jeux.git
@@ -31,6 +34,7 @@ cd theorie-des-jeux
 Allumer le feu (serveur local)
 python -m http.server
 Puis ouvrez votre navigateur à l'adresse http://localhost:8000
+
 🎭 Comment jouer
 
 Choisissez votre concept de théorie des jeux préféré
@@ -39,6 +43,7 @@ Faites votre choix et voyez le résultat
 Apprenez en vous amusant, ou amusez-vous en apprenant
 
 🧠 Côté technique
+
 Cette application utilise:
 
 HTML5 pour la structure
@@ -47,10 +52,12 @@ JavaScript vanille pour l'interactivité (comme nos ancêtres le faisaient)
 Aucune dépendance externe (on n'a pas besoin de gadgets de gadjos)
 
 📜 Origine du projet
+
 Ce projet est né autour d'un feu de camp, quand un professeur d'économie égaré a tenté d'expliquer le dilemme du prisonnier à notre patriarche. Celui-ci a ri et lui a montré comment ça se passe réellement quand deux gitans sont arrêtés pour vol de poules.
 Le projet a ensuite été développé par le clan des développeurs itinérants, équipés uniquement de leurs ordinateurs portables et d'une connexion WiFi empruntée.
 
 👑 Contribuer
+
 Pour contribuer à ce projet:
 
 Fourgonnez (Fork) ce dépôt
@@ -62,6 +69,7 @@ Ouvrez une Pull Request
 Nous acceptons toutes les contributions, mais préférons celles qui viennent avec une bonne histoire à raconter.
 
 🎨 Reconnaissance
+
 Merci à John Nash, qui n'était peut-être pas gitan, mais qui savait certainement négocier comme l'un des nôtres.
 
 📄 Licence
