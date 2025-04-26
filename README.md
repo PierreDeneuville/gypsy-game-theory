@@ -73,6 +73,7 @@ Nous acceptons toutes les contributions, mais préférons celles qui viennent av
 Merci à John Nash, qui n'était peut-être pas gitan, mais qui savait certainement négocier comme l'un des nôtres.
 
 📄 Licence
+
 Ce projet est sous licence Manouche - voir le fichier LICENCE.md pour plus de détails, ou venez en discuter autour d'un feu de camp avec notre avocat Tzigane.
 
 "La vie est un jeu, mon ami. Mais rappelle-toi : même quand tu connais toutes les règles, parfois la meilleure stratégie est de faire croire que tu ne les connais pas." — Django le Sage, théoricien du campement
