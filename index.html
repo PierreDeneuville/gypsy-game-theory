@@ -482,27 +482,27 @@
     <script>
         // Dilemme du prisonnier
         document.getElementById('cooperer').addEventListener('click', function() {
-            const decision = Math.random() > 0.5 ? 'coopérer' : 'trahir';
-            let resultat = `L'autre prisonnier a décidé de ${decision}.<br>`;
+            const decision = Math.random() > 0.5 ? 'tenu sa langue' : 'balancé';
+            let resultat = `Moustache a ${decision}.<br>`;
             
-            if (decision === 'coopérer') {
-                resultat += "Vous écoperez tous les deux d'une peine d'un an.";
+            if (decision === 'tenu sa langue') {
+                resultat += "Vous passerez tous les deux un mois au gnouf. La solidarité entre gitans, ça paie... un peu.";
             } else {
-                resultat += "Vous écoperez d'une peine de 3 ans alors que l'autre prisonnier est libéré.";
+                resultat += "Vous passerez trois mois au gnouf tandis que Moustache s'en sort et récupère même trois poules en récompense. Le traître!";
             }
             
             document.getElementById('prisonnier-resultat').innerHTML = resultat;
             document.getElementById('prisonnier-explication').classList.remove('hidden');
         });
-        
+
         document.getElementById('trahir').addEventListener('click', function() {
-            const decision = Math.random() > 0.5 ? 'coopérer' : 'trahir';
-            let resultat = `L'autre prisonnier a décidé de ${decision}.<br>`;
+            const decision = Math.random() > 0.5 ? 'tenu sa langue' : 'balancé';
+            let resultat = `Moustache a ${decision}.<br>`;
             
-            if (decision === 'coopérer') {
-                resultat += "Vous êtes libéré alors que l'autre prisonnier écope d'une peine de 3 ans.";
+            if (decision === 'tenu sa langue') {
+                resultat += "Vous êtes libéré avec trois poules en prime, tandis que ce pauvre Moustache passe trois mois au gnouf. Vous éviterez de le croiser à sa sortie.";
             } else {
-                resultat += "Vous écoperez tous les deux d'une peine de 2 ans.";
+                resultat += "Vous passerez tous les deux deux mois au gnouf, sans poules. Les gendarmes rigolent bien de votre situation.";
             }
             
             document.getElementById('prisonnier-resultat').innerHTML = resultat;
@@ -540,53 +540,53 @@
         
         // Jeux à somme nulle
         document.getElementById('pierre').addEventListener('click', function() {
-            const choix = ['pierre', 'papier', 'ciseaux'];
-            const ordinateur = choix[Math.floor(Math.random() * 3)];
+            const choix = ['rythme manouche', 'valse musette', 'czardas endiablée'];
+            const adversaire = choix[Math.floor(Math.random() * 3)];
             
-            let resultat = `Vous : Pierre | Ordinateur : ${ordinateur.charAt(0).toUpperCase() + ordinateur.slice(1)}<br>`;
+            let resultat = `Vous : Rythme manouche | Patchaï : ${adversaire.charAt(0).toUpperCase() + adversaire.slice(1)}<br>`;
             
-            if (ordinateur === 'pierre') {
-                resultat += "Égalité ! (0 point partout)";
-            } else if (ordinateur === 'papier') {
-                resultat += "Vous perdez ! (-1 pour vous, +1 pour l'ordinateur)";
+            if (adversaire === 'rythme manouche') {
+                resultat += "Égalité ! Vos deux dents en or restent dans vos bouches respectives. Le public est un peu déçu.";
+            } else if (adversaire === 'valse musette') {
+                resultat += "Vous perdez ! Adieu votre dent en or, Patchaï l'ajoute fièrement à sa collection brillante.";
             } else {
-                resultat += "Vous gagnez ! (+1 pour vous, -1 pour l'ordinateur)";
+                resultat += "Vous gagnez ! La dent en or de Patchaï est à vous, vous la montrez fièrement à tout le campement.";
             }
             
             document.getElementById('somme-nulle-resultat').innerHTML = resultat;
             document.getElementById('somme-nulle-explication').classList.remove('hidden');
         });
-        
+
         document.getElementById('papier').addEventListener('click', function() {
-            const choix = ['pierre', 'papier', 'ciseaux'];
-            const ordinateur = choix[Math.floor(Math.random() * 3)];
+            const choix = ['rythme manouche', 'valse musette', 'czardas endiablée'];
+            const adversaire = choix[Math.floor(Math.random() * 3)];
             
-            let resultat = `Vous : Papier | Ordinateur : ${ordinateur.charAt(0).toUpperCase() + ordinateur.slice(1)}<br>`;
+            let resultat = `Vous : Valse musette | Patchaï : ${adversaire.charAt(0).toUpperCase() + adversaire.slice(1)}<br>`;
             
-            if (ordinateur === 'pierre') {
-                resultat += "Vous gagnez ! (+1 pour vous, -1 pour l'ordinateur)";
-            } else if (ordinateur === 'papier') {
-                resultat += "Égalité ! (0 point partout)";
+            if (adversaire === 'rythme manouche') {
+                resultat += "Vous gagnez ! La dent en or de Patchaï est à vous, son sourire a maintenant un trou évident.";
+            } else if (adversaire === 'valse musette') {
+                resultat += "Égalité ! Vos deux dents en or restent dans vos bouches respectives. Le public siffle son mécontentement.";
             } else {
-                resultat += "Vous perdez ! (-1 pour vous, +1 pour l'ordinateur)";
+                resultat += "Vous perdez ! Votre dent en or rejoint la collection de Patchaï au milieu des applaudissements.";
             }
             
             document.getElementById('somme-nulle-resultat').innerHTML = resultat;
             document.getElementById('somme-nulle-explication').classList.remove('hidden');
         });
-        
+
         document.getElementById('ciseaux').addEventListener('click', function() {
-            const choix = ['pierre', 'papier', 'ciseaux'];
-            const ordinateur = choix[Math.floor(Math.random() * 3)];
+            const choix = ['rythme manouche', 'valse musette', 'czardas endiablée'];
+            const adversaire = choix[Math.floor(Math.random() * 3)];
             
-            let resultat = `Vous : Ciseaux | Ordinateur : ${ordinateur.charAt(0).toUpperCase() + ordinateur.slice(1)}<br>`;
+            let resultat = `Vous : Czardas endiablée | Patchaï : ${adversaire.charAt(0).toUpperCase() + adversaire.slice(1)}<br>`;
             
-            if (ordinateur === 'pierre') {
-                resultat += "Vous perdez ! (-1 pour vous, +1 pour l'ordinateur)";
-            } else if (ordinateur === 'papier') {
-                resultat += "Vous gagnez ! (+1 pour vous, -1 pour l'ordinateur)";
+            if (adversaire === 'rythme manouche') {
+                resultat += "Vous perdez ! Arrachez votre dent en or et donnez-la à Patchaï qui sourit de toutes ses dents, y compris la vôtre.";
+            } else if (adversaire === 'valse musette') {
+                resultat += "Vous gagnez ! Patchaï vous donne sa dent en or avec une grimace de douleur. Les femmes du campement vous admirent.";
             } else {
-                resultat += "Égalité ! (0 point partout)";
+                resultat += "Égalité ! Vos deux dents en or restent en place, mais le public réclame un vrai gagnant - les égalités ne font pas d'histoires à raconter.";
             }
             
             document.getElementById('somme-nulle-resultat').innerHTML = resultat;
@@ -671,43 +671,43 @@
         
         // Jeux répétés
         let strategie = 'cooperer'; // stratégie initiale de l'adversaire
-        
+
         document.getElementById('rep-cooperer').addEventListener('click', function() {
-            let resultat = "Tour 1 - Vous avez coopéré. L'adversaire a aussi coopéré.<br>";
-            resultat += "Vous gagnez 2 points chacun.";
+            let resultat = "Tour 1 - Vous avez fourni une marchandise correcte. Papillon aussi a été loyal.<br>";
+            resultat += "Vous gagnez chacun 2 louis d'or et votre réputation de commerçant honnête grandit.";
             document.getElementById('repete-resultat').innerHTML = resultat;
             document.getElementById('repete-tour2').classList.remove('hidden');
             strategie = 'cooperer'; // l'adversaire reproduit votre choix
         });
-        
+
         document.getElementById('rep-trahir').addEventListener('click', function() {
-            let resultat = "Tour 1 - Vous avez trahi. L'adversaire a coopéré.<br>";
-            resultat += "Vous gagnez 3 points, l'adversaire ne gagne rien.";
+            let resultat = "Tour 1 - Vous avez fourni une camelote. Papillon, naïf, a donné une bonne marchandise.<br>";
+            resultat += "Vous gagnez 3 louis d'or, Papillon ne gagne rien et fulmine en silence.";
             document.getElementById('repete-resultat').innerHTML = resultat;
             document.getElementById('repete-tour2').classList.remove('hidden');
             strategie = 'trahir'; // l'adversaire reproduit votre choix
         });
-        
+
         document.getElementById('rep-cooperer2').addEventListener('click', function() {
-            let resultat = "Tour 2 - Vous avez coopéré. ";
+            let resultat = "Tour 2 - Vous avez fourni une marchandise correcte. ";
             
             if(strategie === 'cooperer') {
-                resultat += "L'adversaire a aussi coopéré.<br>Vous gagnez 2 points chacun.";
+                resultat += "Papillon aussi a été loyal.<br>Vous gagnez chacun 2 louis d'or et les affaires prospèrent.";
             } else {
-                resultat += "L'adversaire a trahi (reproduisant votre choix du tour 1).<br>Vous ne gagnez rien, l'adversaire gagne 3 points.";
+                resultat += "Mais Papillon vous a refilé de la camelote (œil pour œil!).<br>Vous ne gagnez rien, tandis que ce fripon empoche 3 louis d'or. Sa réputation de vengeur fait le tour du campement.";
             }
             
             document.getElementById('repete-resultat2').innerHTML = resultat;
             document.getElementById('repete-explication').classList.remove('hidden');
         });
-        
+
         document.getElementById('rep-trahir2').addEventListener('click', function() {
-            let resultat = "Tour 2 - Vous avez trahi. ";
+            let resultat = "Tour 2 - Vous avez fourni de la camelote. ";
             
             if(strategie === 'cooperer') {
-                resultat += "L'adversaire a coopéré (reproduisant votre choix du tour 1).<br>Vous gagnez 3 points, l'adversaire ne gagne rien.";
+                resultat += "Papillon, encore naïf, a donné une bonne marchandise.<br>Vous empochezç 3 louis d'or, Papillon ne gagne rien. Tout le campement commence à vous éviter pour les affaires.";
             } else {
-                resultat += "L'adversaire a aussi trahi.<br>Vous gagnez 1 point chacun.";
+                resultat += "Papillon aussi vous a refilé de la camelote.<br>Vous gagnez 1 louis d'or chacun. Les deux familles se regardent maintenant en chiens de faïence.";
             }
             
             document.getElementById('repete-resultat2').innerHTML = resultat;
@@ -720,23 +720,23 @@
             let resultat = '';
             
             if(qualite === 'bonne') {
-                resultat = "Vous avez acheté une voiture de bonne qualité ! Sa valeur réelle est de 7000€.<br>Vous avez fait une bonne affaire (+2000€).";
+                resultat = "Vous avez acheté une Renault 25 qui tourne comme une horloge ! Sa valeur réelle est de 7000€.<br>Vous avez fait une bonne affaire (+2000€). Tino aux Dents d'Or vous regarde partir avec amertume.";
             } else {
-                resultat = "Vous avez acheté une voiture de mauvaise qualité ! Sa valeur réelle est de 2000€.<br>Vous avez fait une mauvaise affaire (-3000€).";
+                resultat = "Catastrophe! La Renault 25 est une épave déguisée ! Sa valeur réelle est de 2000€.<br>Vous avez perdu 3000€. Tino aux Dents d'Or vous fait un clin d'œil et dit à tout le campement: 'Encore un gadjo qui croit tout ce qu'on lui dit!'";
             }
             
             document.getElementById('asymetrique-resultat').innerHTML = resultat;
             document.getElementById('asymetrique-explication').classList.remove('hidden');
         });
-        
+
         document.getElementById('refuser').addEventListener('click', function() {
             const qualite = Math.random() > 0.3 ? 'bonne' : 'mauvaise';
             let resultat = '';
             
             if(qualite === 'bonne') {
-                resultat = "Vous avez refusé d'acheter une voiture qui était en réalité de bonne qualité.<br>Vous avez manqué une bonne affaire.";
+                resultat = "Vous avez refusé d'acheter une Renault 25 qui était en réalité un petit bijou.<br>Tino aux Dents d'Or la vend au double du prix à un autre acheteur en vous narguant.";
             } else {
-                resultat = "Vous avez refusé d'acheter une voiture qui était en réalité de mauvaise qualité.<br>Vous avez évité une mauvaise affaire.";
+                resultat = "Bien joué! La Renault 25 était une vraie savate, bonne pour la casse!<br>Tino aux Dents d'Or vous lance un regard noir - vous avez déjoué son piège!";
             }
             
             document.getElementById('asymetrique-resultat').innerHTML = resultat;
@@ -770,16 +770,16 @@
         
         // Prix de l'anarchie
         document.getElementById('ajouter-route').addEventListener('click', function() {
-            let resultat = "Avec la nouvelle route B→C, tous les conducteurs ont choisi le chemin A→B→C→D car il semble individuellement optimal.<br>";
-            resultat += "Résultat paradoxal : le temps de trajet moyen a augmenté de 10% pour tous les usagers !";
+            let resultat = "Avec le nouveau raccourci par la zone des palettes, tous les gitans ont choisi de l'emprunter car il semble individuellement plus rapide.<br>";
+            resultat += "Résultat catastrophique: un embouteillage monstre de caravanes! Le trajet vers la source d'eau prend désormais 10% plus de temps pour tout le monde. Les enfants se moquent de votre décision.";
             
             document.getElementById('anarchie-resultat').innerHTML = resultat;
             document.getElementById('anarchie-explication').classList.remove('hidden');
         });
-        
+
         document.getElementById('conserver-reseau').addEventListener('click', function() {
-            let resultat = "Vous avez conservé le réseau actuel. Les conducteurs se répartissent équitablement entre les deux routes existantes.<br>";
-            resultat += "Le temps de trajet reste optimal pour l'ensemble des usagers.";
+            let resultat = "Vous avez conservé les chemins existants. Les caravanes se répartissent naturellement entre la route du bois et celle de la colline.<br>";
+            resultat += "Le temps de trajet reste optimal pour l'ensemble du campement. Votre sagesse est louée par les anciens.";
             
             document.getElementById('anarchie-resultat').innerHTML = resultat;
             document.getElementById('anarchie-explication').classList.remove('hidden');
